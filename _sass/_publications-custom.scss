@@ -1,0 +1,254 @@
+// Custom publications ("chips") styling for al-folio.
+//
+// Uses al-folio's own CSS variables, so it inherits your chosen
+// --global-theme-color and adapts to light/dark mode with no extra work.
+//
+// This file is compiled via assets/css/publications.scss, which is linked
+// from _pages/publications.md. Markup lives in _layouts/bib.liquid.
+//
+// Everything is nested under .publications so these rules out-specify the
+// theme's own `.publications h2 { ... }` rules from al_folio_core.
+
+.publications {
+  // ---------------------------------------------------------------- headings
+  // Section headings we author ourselves ("Working papers", "Publications", ...).
+  .pub-section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 2.75rem 0 0.25rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--global-divider-color);
+    color: var(--global-text-color);
+  }
+  .pub-section-title:first-child {
+    margin-top: 0.5rem;
+  }
+
+  // NOTE: jekyll-scholar's year headings (h2.bibliography) are not styled here
+  // because `scholar.group_by` is set to `none` in _config.yml — entries render
+  // as a flat list and the year appears in each citation line instead. If you
+  // ever switch grouping back on, those headings will need styling.
+
+  // ------------------------------------------------------------------- items
+  // jekyll-scholar wraps every entry in `ol.bibliography > li`, so each
+  // .pub-item is an only child of its own <li>. Hang the separator off the
+  // list item rather than using :first-of-type on .pub-item, which would
+  // match every entry and leave the list with no dividers at all.
+  ol.bibliography {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0;
+    }
+
+    li + li .pub-item {
+      border-top: 1px solid var(--global-divider-color);
+    }
+  }
+
+  .pub-item {
+    padding: 1rem 0;
+  }
+
+  .pub-title {
+    font-weight: 500;
+    color: var(--global-text-color);
+    text-decoration: none;
+  }
+  .pub-title:hover {
+    color: var(--global-theme-color);
+  }
+
+  .pub-meta {
+    margin-top: 0.2rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--global-text-color-light);
+  }
+
+  // ------------------------------------------------------------------- chips
+  .pub-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.65rem;
+  }
+
+  .pub-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    padding: 4px 11px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease,
+      background 0.15s ease;
+  }
+  .pub-chip:hover,
+  .pub-chip.active {
+    color: var(--global-text-color);
+    border-color: var(--global-text-color-light);
+  }
+  .pub-chip:focus-visible {
+    outline: 2px solid var(--global-theme-color);
+    outline-offset: 2px;
+  }
+  .pub-chip .pub-ext {
+    font-size: 0.68rem;
+    opacity: 0.8;
+  }
+  .pub-chip .pub-chev {
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+  }
+  .pub-chip.active .pub-chev {
+    transform: rotate(180deg);
+  }
+
+  // Public-facing chips (plain-language summary, video): accented.
+  .pub-chip.pf {
+    border-color: var(--global-theme-color);
+    color: var(--global-theme-color);
+  }
+  .pub-chip.pf:hover {
+    background: var(--global-theme-color);
+    color: #fff;
+  }
+
+  // ------------------------------------------------------------ expand panels
+  // 0fr -> 1fr animates to the panel's natural height, so long abstracts are
+  // never clipped (the old fixed max-height could cut them off).
+  .pub-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .pub-panel > .pub-panelinner {
+    overflow: hidden;
+    min-height: 0;
+    // Keeps links inside a collapsed panel out of the tab order and away from
+    // screen readers; delayed so it does not cut the closing animation short.
+    visibility: hidden;
+    transition: visibility 0s linear 0.25s;
+  }
+  .pub-panel.open {
+    grid-template-rows: 1fr;
+  }
+  .pub-panel.open > .pub-panelinner {
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .pub-body {
+    margin: 0.6rem 0 0.2rem;
+    padding: 0.75rem 1rem;
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--global-text-color);
+  }
+
+  .pub-bibhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--global-text-color-light);
+  }
+  .pub-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 3px 9px;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .pub-copy:hover {
+    color: var(--global-text-color);
+    border-color: var(--global-text-color-light);
+  }
+
+  .pub-bibtex {
+    margin: 0;
+    padding: 0.6rem 0.75rem;
+    background: var(--global-code-bg-color);
+    border-radius: 6px;
+    font-family: var(--global-font-family-mono, monospace);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    color: var(--global-text-color);
+  }
+
+  .pub-medialist {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .pub-medialist li {
+    margin: 0.15rem 0;
+  }
+  .pub-medialist a {
+    color: var(--global-theme-color);
+  }
+}
+
+// Light mode only. A chip's default outline is the divider colour, which is
+// nearly invisible on a near-white page, and a chip is an interactive control —
+// WCAG 1.4.11 asks those to hold 3:1 against their surroundings. Dark mode
+// already separates them well, so this is scoped away from it. `:not` covers
+// both the explicit light setting and the no-attribute default.
+html:not([data-theme="dark"]) .publications {
+  .pub-chip {
+    border-color: #8b8b91; // 3.3:1 against the page background
+    background: #f3f3f5; // subtle fill so the pill reads as a control
+    color: #56565c;
+  }
+  .pub-chip:hover,
+  .pub-chip.active {
+    border-color: #5f5f66;
+    background: #e9e9ee;
+    color: var(--global-text-color);
+  }
+
+  // Public-facing chips stay accent-coloured so they remain distinguishable
+  // from the neutral ones at a glance.
+  .pub-chip.pf {
+    border-color: var(--global-theme-color);
+    background: #f7eef6;
+    color: var(--global-theme-color);
+  }
+  .pub-chip.pf:hover {
+    background: var(--global-theme-color);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publications .pub-panel,
+  .publications .pub-panel > .pub-panelinner,
+  .publications .pub-chip,
+  .publications .pub-chip .pub-chev {
+    transition: none;
+  }
+}

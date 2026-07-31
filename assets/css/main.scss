@@ -1,0 +1,47 @@
+---
+# Local override of al_folio_core's assets/css/main.scss.
+#
+# It is a verbatim copy of the gem's file (al_folio_core 1.0.12) with one
+# extra line at the end: `@use "site-overrides"`, which loads
+# _sass/_site-overrides.scss for site-wide CSS tweaks. The gem provides no
+# hook for injecting custom CSS, so shadowing this file is the supported way.
+#
+# DRIFT WARNING: if a future al_folio_core release adds or renames a partial
+# in its own main.scss, this copy will not pick it up and those styles will
+# silently go missing. After `bundle update`, compare against the gem's copy:
+#   bundle exec al-folio upgrade overrides diff assets/css/main.scss
+---
+
+@charset "utf-8";
+
+/* Built-in Sass modules you’ll likely use across partials */
+@use "sass:math";
+@use "sass:string";
+
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }}
+);
+
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+// Site-specific overrides (local; not part of the gem).
+@use "site-overrides";

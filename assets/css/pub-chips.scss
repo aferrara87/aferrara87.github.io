@@ -1,0 +1,13 @@
+---
+# Compiles _sass/_publications-custom.scss into a real stylesheet.
+# Linked from _pages/publications.md. The empty front matter is what tells
+# Jekyll to run this file through the Sass converter.
+#
+# NOTE: do not name a file in this directory after a theme partial
+# (publications, layout, navbar, typography, ...). The al_folio_core
+# main.scss does `@use "publications"` etc., and Sass resolves those
+# relative to assets/css/ first, so a same-named file here silently
+# shadows the theme's partial and breaks the whole stylesheet.
+---
+
+@use "publications-custom";

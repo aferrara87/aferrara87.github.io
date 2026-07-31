@@ -23,5 +23,12 @@ module.exports = {
     // and page chrome (scroll-progress bar, ToC) bleeds through a zoomed image.
     "medium-zoom-overlay",
     "medium-zoom-image--opened",
+    // The publications "chips" UI adds these at runtime from
+    // assets/js/publications-toggle.js, so they never appear in a class
+    // attribute in the static HTML. Without them the expand/collapse rules
+    // (.pub-panel.open, .pub-chip.active) are purged and clicking a chip
+    // silently does nothing — on the deployed site only, not locally.
+    "open",
+    "active",
   ],
 };

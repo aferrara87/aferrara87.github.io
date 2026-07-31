@@ -1,0 +1,64 @@
+// Site-wide CSS tweaks layered on top of al_folio_core.
+// Loaded last from assets/css/main.scss, so these rules win ties.
+
+// Navbar brand: the theme renders the site title as
+//   <a class="navbar-brand title font-weight-lighter">
+//     <span class="font-weight-bold">Andreas</span>Ferrara
+//   </a>
+// so the surname inherits `font-weight: lighter` from the anchor while the
+// first name is bold. Force both to the same weight.
+#navbar .navbar-brand.title {
+  font-weight: 700;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+// About page hero title. The theme's about layout wraps the first name in
+// <span class="font-weight-bold">, so "Andreas" rendered bold while "Ferrara"
+// stayed regular. `inherit` matches the h1's own weight exactly, whatever the
+// theme sets it to, so the full name reads at one weight.
+.post-header .post-title .font-weight-bold {
+  font-weight: inherit;
+}
+
+// Pages that omit `subtitle` (About) or `description` (Research, Conferences)
+// still get an empty paragraph from the theme's layouts, which would leave its
+// margin behind as a stray gap under the heading.
+.post-header .desc:empty,
+.post-header .post-description:empty {
+  display: none;
+}
+
+// The theme hard-codes `font-family: monospace` on the About page contact
+// block (_sass/_components.scss, .profile .more-info), making it the only
+// monospace text on the site. Inherit the body font instead.
+.profile .more-info {
+  font-family: inherit;
+}
+
+// ---------------------------------------------------------------- light theme
+// al_folio_core defines its light palette on :root and overrides it under
+// html[data-theme="dark"]. That dark selector is more specific than :root, so
+// redefining the variables here affects light mode only — dark is untouched.
+//
+// Measured WCAG 2.1 contrast against the light background:
+//   --global-text-color-light was #828282 = 3.84:1, which FAILS AA for body
+//     text. It drives the citation lines and chip labels, so this was the
+//     worst offender. Now 7.1:1.
+//   --global-theme-color was #b509ac. It passed contrast (5.8:1) but at ~90%
+//     saturation it glared on white. The replacement is deeper and calmer at
+//     7.4:1; white-on-accent (the .pf chip hover) is 7.6:1.
+//   --global-text-color was pure #000 on pure #fff = 21:1, the maximum
+//     possible and the main source of glare. Now 16.6:1 on a near-white page.
+//   --global-divider-color goes from 10% to 17% black so section rules and
+//     entry separators are actually visible.
+:root {
+  --global-bg-color: #fcfcfd;
+  --global-text-color: #1c1c1e;
+  --global-text-color-light: #56565c;
+  --global-theme-color: #8e2589;
+  --global-hover-color: #8e2589;
+  --global-divider-color: rgba(0, 0, 0, 0.17);
+}

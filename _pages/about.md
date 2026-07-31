@@ -1,34 +1,29 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: false
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Department of Economics</p>
+    <p>4526 Wesley W. Posvar Hall</p>
+    <p>Pittsburgh, PA 15260, USA</p>
+    <p><a href="mailto:a.ferrara@pitt.edu">a.ferrara@pitt.edu</a></p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
-
-announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+selected_papers: false
+social: false
+news: false
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am an Associate Professor in the [Department of Economics](https://www.econ.pitt.edu/) at the University of Pittsburgh and a Research Associate at the National Bureau of Economic Research ([NBER](https://www.nber.org/)).
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I received my Ph.D. in Economics from the [University of Warwick](https://warwick.ac.uk/fac/soc/economics/), where I am affiliated with the Centre for Competitive Advantage in the Global Economy ([CAGE](https://warwick.ac.uk/fac/soc/economics/research/centres/cage/)). I am also a research fellow at the ROCKWOOL Foundation Berlin ([RFBerlin](https://www.rfberlin.com/)) and a faculty affiliate at the Center for Governance and Markets ([CGM](https://www.cgm.pitt.edu/)).
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My research interests are in economic history, labor economics, and political economy. You can find my [CV]({{ '/cv/' | relative_url }}) here, and my [research]({{ '/publications/' | relative_url }}) here.
+
+[Google Scholar profile](https://scholar.google.com/citations?user=n9usP5QAAAAJ)<br>
+Bluesky: [@andyferrara.bsky.social](https://bsky.app/profile/andyferrara.bsky.social)<br>
+Twitter: [@Andreas_Ferrara](https://twitter.com/Andreas_Ferrara)

@@ -1,115 +1,290 @@
----
----
+% ======================================================================
+% papers.bib  —  Andy Ferrara
+% Rendered by the custom _layouts/bib.liquid into the "chip" layout.
+%
+% Fields the chip template understands (all optional except the citation):
+%   category     workingpaper | wip | publication | bookchapter  (groups the list)
+%   pdf          filename in assets/pdf/  OR  a full https:// URL   -> PDF chip
+%   bibtex_show  {true}                                            -> BibTeX chip
+%   abstract     text                                             -> Abstract chip
+%   summary      text                                             -> Plain-language chip (accent)
+%   video        https:// URL                                     -> Video chip (accent)
+%   replication  https:// URL                                     -> Replication chip
+%   teaching     filename in assets/pdf/  OR  a full https:// URL  -> Teaching materials chip (download)
+%   media        "Outlet|URL; Outlet|URL"                         -> Media chip (expands to a list)
+%   selected     {true}                                           -> also shown on the About page
+%
+% ======================================================================
 
-@string{aps = {American Physical Society,}}
 
-@book{einstein1920relativity,
-  title     = {Relativity: the Special and General Theory},
-  author    = {Einstein, Albert},
-  year      = {1920},
-  publisher = {Methuen & Co Ltd},
-  html      = {relativity.html}
+% =========================== WORKING PAPERS ===========================
+
+@techreport{FDH_2025,
+  author      = {Ferrara, Andreas and Dippel, Christian and Heblich, Stephan},
+  title       = {Frontline Leadership: Evidence from American Civil War Captains},
+  institution = {National Bureau of Economic Research},
+  number      = {NBER Working Paper 34057},
+  year        = {2025},
+  category    = {workingpaper},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1J-yt17rp-RDWp6UKDNFInnX7ECZ5yCZB/view?usp=sharing},
+  media       = {Washington Post|https://www.washingtonpost.com/business/2026/03/02/leadership-traits-frontline-managers-civil-war/},
+  abstract    = {This paper provides new evidence on the critical role of frontline leaders in lower-level organizational roles in implementing strategies through team cohesion. Using weekly data on 2.2 million Union Army soldiers, we estimate captain fixed effects during non-combat weeks to measure leadership quality. This measure is validated by postwar outcomes and not explained by selection. Event studies show high-quality leaders reduced desertions in combat. Exploiting quasi-random turnover and digitized battle maps, we find this effect is causal and driven by leading-by-example, not risk aversion. Modest learning-by-doing effects further highlight the overlooked importance of frontline, hands-on leadership.}
 }
 
-@book{einstein1956investigations,
+@techreport{Arnsbarger_etal_2025,
+  author      = {Arnsbarger, Madison and Ferrara, Andreas and Montrose, Paige},
+  title       = {The U.S. Civil War's Impact on Women's Work and Political Participation},
+  institution = {National Bureau of Economic Research},
+  number      = {NBER Working Paper 35287},
+  year        = {2025},
+  category    = {workingpaper},
   bibtex_show = {true},
-  title       = {Investigations on the Theory of the Brownian Movement},
-  author      = {Einstein, Albert},
-  year        = {1956},
-  publisher   = {Courier Corporation},
-  preview     = {brownian-motion.gif}
+  pdf         = {https://drive.google.com/file/d/1wB-fSK5DD9cM3CMmEHkHSRW9-Ru6Jhmi/view?usp=sharing},
+  abstract    = {This paper studies the role of economic participation via the labor market in enabling the political mobilization of an underrepresented group. Specifically, we study the wives and daughters of disabled Union Army soldiers after the U.S. Civil War. Linking Union Army enlistment records to the 1860 and 1870 U.S. censuses, we find that the wives and daughters of disabled veterans were significantly more likely to participate in the labor force than those of non-disabled veterans. Historical evidence suggests that disabled veterans were also more exposed to postwar alcohol and substance abuse, increasing the household burdens faced by women. Town-level data show that increases in women's labor force participation combined with higher shares of disabled veterans predict more Temperance Crusade activity in 1873–74. Information provision via newspapers and proximity to other protest towns amplify these effects. Using unit-level disability rates as an instrument for veterans' disability status supports a causal interpretation of the labor market effects. Our results suggest that labor force participation can be an important enabling factor for the political mobilization of underrepresented groups.}
 }
 
-@article{einstein1950meaning,
-  abbr        = {AJP},
+@techreport{Ferrara_2026,
+  author      = {Ferrara, Andreas},
+  title       = {A Practitioner's Guide to Using Large Language Models and Generative AI in Economic History},
+  institution = {National Bureau of Economic Research},
+  number      = {NBER Working Paper 35374},
+  year        = {2026},
+  category    = {workingpaper},
   bibtex_show = {true},
-  title       = {The meaning of relativity},
-  author      = {Einstein, Albert and Taub, AH},
-  journal     = {American Journal of Physics},
-  volume      = {18},
+  pdf         = {https://drive.google.com/file/d/1pq0a1xmog0t-PlncbCbQmjl9jRL4VDdB/view?usp=sharing},
+  abstract    = {Large language models (LLMs) are lowering the entry barriers to working with exciting data sources that used to require strong data science skills, such as handwritten ledgers, text, images, or sound recordings. This guide provides an introduction for researchers who are new to LLMs. It sets out a step-by-step workflow for turning a research idea into working code and data, and describes the four main ways of interacting with an LLM: the chat window, editor-integrated assistants, agentic coding tools, and the API. It then works through the decisions a practitioner meets in sequence, beginning with whether an LLM is the right tool and whether the data are allowed to be sent to one, then how to select models, write prompts, manage context limits, and control costs, and finally how to validate, reproduce, document, and correct LLM-generated measures in regression settings. A review of recent research shows how these tools already extract, link, harmonize, and classify historical data at scale. Four worked examples with replication files illustrate the use of LLMs. They classify emotions in paintings, link census records without names, measure newspaper salience and sentiment around the 1882 Chinese Exclusion Act, and score the emotional delivery of Franklin D. Roosevelt's wartime speeches. The guide also condenses the workflow, the best-practice recommendations, and the preparation of replication packages into summary tables and checklists to aid applied economists.}
+}
+
+
+% ============================ PUBLICATIONS ============================
+
+@article{Bazzi_etal_2025,
+  author      = {Bazzi, Samuel and Ferrara, Andreas and Fiszbein, Martin and Pearson, Thomas and Testa, Patrick},
+  title       = {The Confederate Diaspora},
+  journal     = {Review of Economic Studies},
+  year        = {2025},
+  note        = {Forthcoming},
+  category    = {publication},
+  selected    = {true},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/14RlX4BoCK8eA91JHb3xZy7Dba-KQ5vUK/view?usp=sharing},
+  replication = {https://zenodo.org/records/17361408},
+  abstract    = {This paper presents a new framework to understand when and how migrants shape culture. We apply this framework to analyze the outsized influence of the Confederate diaspora. Despite their small numbers, Southern White individuals that migrated after the Civil War played a pivotal role in spreading Confederate symbols and racial norms across the United States by the early 20th century. Their far-reaching influence stemmed from two key conditions: an ideological intensity rooted in their experiences of slavery, secession, and military defeat, and access to malleable power structures during westward expansion and postwar reconciliation. These conditions enabled them to transmit Confederate culture to both kin and non-Southern neighbors and to expand their reach by mobilizing civil society organizations. By leveraging positions of authority, they shaped institutions and policies that entrenched racial norms and inequalities in labor markets, housing, and the criminal justice system. Our findings provide empirical foundations for understanding how migrants can transform local culture, rather than merely assimilate.},
+  media       = {90.1 FM WABE|https://www.wabe.org/podcasts/closer-look/long-term-impact-of-confederate-diaspora-challenges-to-ga-voter-registrations-by-right-wing-activists-remembering-christine-king-farris/; Ballpark Podcast|https://blogs.lse.ac.uk/usappblog/2023/06/12/the-ballpark-podcast-extra-innings-the-confederate-diaspora-with-professor-samuel-bazzi/; Broadstreet Blog|https://broadstreet.blog/2023/07/01/tracing-the-legacy-of-southern-white-migration/; NBC News|https://www.nbcnews.com/news/nbcblk/ex-confederates-spread-racist-attitudes-far-wide-civil-war-rcna90419; USA Today|https://www.usatoday.com/story/news/nation/2023/07/13/confederate-migration-spread-white-supremacy/70407472007/; VoxEU|https://cepr.org/voxeu/columns/shadow-confederacy-culture-institutions-and-geography-racial-animus-us}
+}
+
+@article{Becker_etal_2025,
+  author      = {Becker, Sascha O. and Ferrara, Andreas and Melander, Eric and Pascali, Luigi},
+  title       = {Wars, Taxation and Representation: Evidence from Five Centuries of German History},
+  journal     = {Journal of the European Economic Association},
+  volume      = {23},
   number      = {6},
-  pages       = {403--404},
-  year        = {1950},
-  publisher   = {American Association of Physics Teachers}
-}
-
-@article{PhysRev.47.777,
-  abbr              = {PhysRev},
-  title             = {Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author            = {Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract          = {In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal           = {Phys. Rev.},
-  location          = {New Jersey},
-  volume            = {47},
-  issue             = {10},
-  pages             = {777--780},
-  numpages          = {0},
-  year              = {1935},
-  month             = {May},
-  publisher         = aps,
-  doi               = {10.1103/PhysRev.47.777},
-  url               = {https://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html              = {https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf               = {example_pdf.pdf},
-  altmetric         = {248277},
-  dimensions        = {true},
-  google_scholar_id = {qyhmnyLat1gC},
-  video             = {https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info   = {. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation        = {* Example use of superscripts<br>† Albert Einstein},
-  selected          = {true},
-  inspirehep_id     = {3255}
-}
-
-@article{einstein1905molekularkinetischen,
-  title     = {{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author    = {Einstein, A.},
-  journal   = {Annalen der physik},
-  volume    = {322},
-  number    = {8},
-  pages     = {549--560},
-  year      = {1905},
-  publisher = {Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr    = {Ann. Phys.},
-  title   = {Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author  = {Einstein, A.},
-  journal = {Ann. Phys.},
-  volume  = {17},
-  pages   = {549--560},
-  year    = {1905}
-}
-
-@article{einstein1905electrodynamics,
-  title  = {On the electrodynamics of moving bodies},
-  author = {Einstein, A.},
-  year   = {1905}
-}
-
-@article{einstein1905photoelectriceffect,
+  pages       = {2241--2288},
+  year        = {2025},
+  category    = {publication},
+  selected    = {true},
   bibtex_show = {true},
-  abbr        = {Ann. Phys.},
-  title       = {{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}},
-  author      = {Albert Einstein},
-  abstract    = {This is the abstract text.},
-  journal     = {Ann. Phys.},
-  volume      = {322},
-  number      = {6},
-  pages       = {132--148},
-  year        = {1905},
-  doi         = {10.1002/andp.19053220607},
-  award       = {Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name  = {Nobel Prize}
+  pdf         = {https://drive.google.com/file/d/1av63-1EMMwwuW4ncW-CXdwsvWZxLFHyr/view?usp=sharing},
+  replication = {https://zenodo.org/records/14998167},
+  abstract    = {We provide causal evidence for the role of warfare in the development of medieval constitutionalism. Using novel data on the universe of German cities between 1290 and 1710, we show that military conflicts led to city councils that were larger, more likely to be elected by citizens, and more likely to include representatives of craft guilds. Additionally, these conflicts resulted in a substantial increase in local fiscal and spending capacity. We exploit the gender of the firstborn children of local nobles as a source of exogenous variation in conflicts.}
 }
 
-@book{przibram1967letters,
+@article{Dupraz_Ferrara_2025,
+  author      = {Dupraz, Yannick and Ferrara, Andreas},
+  title       = {Fatherless: The Long-Term Effects of Losing a Father in the U.S. Civil War},
+  journal     = {Journal of Human Resources},
+  volume      = {60},
+  number      = {4},
+  pages       = {1126--1174},
+  year        = {2025},
+  category    = {publication},
   bibtex_show = {true},
-  title       = {Letters on wave mechanics},
-  author      = {Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year        = {1967},
-  publisher   = {Vision},
-  preview     = {wave-mechanics.gif},
-  abbr        = {Vision}
+  pdf         = {https://drive.google.com/file/d/1IcfXzP89fLSDfYuu0Gaj4wsNXDGOjNgU/view?usp=sharing},
+  replication = {https://www.openicpsr.org/openicpsr/project/183863/version/V1/view},
+  abstract    = {We estimate the causal effect of losing a father in the U.S. Civil War on children's long-run socioeconomic outcomes. Linking military records from the 2.2 million Union Army soldiers with the 1860 U.S. population census, we track soldiers' sons into the 1880 and 1900 census. Sons of soldiers who died had lower occupational income scores and were less likely to work in a high-skilled or semi-skilled job as opposed to being in a low-skilled job or farmers. These effects persisted at least until the 1900 census. Our results are robust to instrumenting paternal death with the mortality rate of the father's regiment, which we argue was driven by military strategy that did not take into account the social origins of soldiers. Pre-war family wealth is a strong mitigating factor—there is no effect of losing a father in the top quartile of the wealth distribution.}
+}
+
+@article{Barrera_etal_2025,
+  author      = {Barrera, Sergio and Ferrara, Andreas and Fishback, Price and Heggeness, Misty},
+  title       = {The Impact of World War II Army Service on Income and Mobility in the 1960s by Ethnoracial Group},
+  journal     = {Explorations in Economic History},
+  volume      = {97},
+  number      = {101687},
+  pages       = {1--20},
+  year        = {2025},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1XCVnPKE8tfyjO-f9tJWQgnLR0vXmCS-u/view?usp=sharing},
+  abstract    = {We link the 1940 full-count Census to World War II enlistment records and 1969 administrative tax returns to study how WWII service in the Army and Army Airforce impacted the income and mobility of non-Hispanic White, Black, Hispanic, Asian, and Native American male Army veterans relative to their non-Army counterparts in 1969. The size of our data set provides enough power to shed new light on previously understudied groups, such as Hispanics, Asians, and Native Americans. In comparisons of Army veterans with non-Army men, Ordinary Least Squares estimates suggest that WWII Army veterans had higher incomes than non-Army men within the same group, and Army veterans were less likely to change counties between 1940 and 1969 than non-Army men within the non-Hispanic White, Black, and Hispanic groups. Worries about selection bias led us to estimate the effects with a fuzzy regression discontinuity design that compares men who were just too young to serve during World War II to men who were just old enough to serve. Those results showed that Army veterans had lower adjusted gross incomes than non-Army men within the non-Hispanic White, Black, and Asian groups, and slightly higher incomes within the Hispanic and Native American groups. The differences varied by type of income. Migration across county boundaries was lower for Army veterans than non-Army men among non-Hispanic Whites, Asians, and Native Americans, and there were only small differences among Blacks and Hispanics.}
+}
+
+@article{Ferrara_Fishback_2024,
+  author      = {Ferrara, Andreas and Fishback, Price},
+  title       = {Discrimination, Migration, and Economic Outcomes: Evidence from World War I},
+  journal     = {Review of Economics and Statistics},
+  volume      = {106},
+  number      = {5},
+  pages       = {1201--1219},
+  year        = {2024},
+  category    = {publication},
+  selected    = {true},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1VIqsmmU6KSSOM6A7dLe--VI2MxSCEwcO/view},
+  replication = {https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YL87YD},
+  media       = {Cato Policy Brief|https://www.cato.org/sites/cato.org/files/2020-07/RB226.pdf},
+  abstract    = {This paper examines the individual and aggregate costs of ethnic discrimination. Studying Germans in the United States during World War I, an event that abruptly downgraded their previously high social standing, we show that anti-German sentiment was strongly associated with counties' casualties in the war, leading to subsequent outmigration of Germans. Such relocation to evade discrimination was costly for German workers. However, counties with larger outflows of Germans, who tended to be well-trained manufacturing workers, incurred economic costs too, including a drop in average annual manufacturing wages of 0.6% to 2.2%. This effect lasted at least until 1930.}
+}
+
+@article{Ferrara_etal_2024b,
+  author      = {Ferrara, Andreas and Testa, Patrick and Zhou, Liyang},
+  title       = {New Area- and Population-based Geographic Crosswalks for U.S. Counties and Congressional Districts, 1790-2020},
+  journal     = {Historical Methods},
+  volume      = {57},
+  number      = {2},
+  pages       = {67--79},
+  year        = {2024},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1aI_1dBdWSP_IO97Rh-aJh9CZR7f0XLfa/view?usp=sharing},
+  replication = {https://doi.org/10.3886/E150101},
+  abstract    = {In applied historical research, geographic units often differ in level of aggregation across datasets. One solution is to use crosswalks that associate factors located within one geographic unit to another, based on their relative areas. We develop an alternative approach based on relative populations, which accounts for heterogeneities in urbanization within counties. We construct population-based crosswalks for 1790 through 2020, which map county-level data across U.S. censuses, as well as from counties to congressional districts. Using official census data for congressional districts, we show that population-based weights outperform area-based ones in terms of similarity to official data.}
+}
+
+@article{Ferrara_etal_2024a,
+  author      = {Ferrara, Andreas and Ha, Joung Yeob and Walsh, Randall P.},
+  title       = {Using Digitized Newspapers to Address Measurement Error in Historical Data},
+  journal     = {Journal of Economic History},
+  volume      = {84},
+  number      = {1},
+  pages       = {271--306},
+  year        = {2024},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1EFm5763v2NmBbOxpJ8j33k2LUi6hU_KM/view?usp=sharing},
+  replication = {https://www.openicpsr.org/openicpsr/project/195648/version/V1/view},
+  media       = {VoxEU|https://voxeu.org/article/using-historical-newspaper-data-deal-measurement-error; Broadstreet Blog|https://broadstreet.blog/2022/04/20/can-we-solve-noisy-historical-data-with-old-newspapers/},
+  abstract    = {This paper shows how to remove attenuation bias in regression analyses due to measurement error in historical data for a given variable of interest by using a secondary measure that can be easily generated from digitized newspapers. We provide three methods for using this secondary variable to deal with non-classical measurement error in a binary treatment: set identification, bias reduction via sample restriction, and a parametric bias correction. We demonstrate the usefulness of our methods by replicating four recent economic history papers. Relative to the initial analyses, our results yield markedly larger coefficient estimates.}
+}
+
+@article{Ferrara_Testa_2023,
+  author      = {Ferrara, Andreas and Testa, Patrick},
+  title       = {Churches as Social Insurance: Oil Risk and Religion in the U.S. South},
+  journal     = {Journal of Economic History},
+  volume      = {83},
+  number      = {3},
+  pages       = {786--832},
+  year        = {2023},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1zhJGciEPIwx_-kSYwWdeqzQNmCFaqeq3/view?usp=sharing},
+  replication = {https://www.openicpsr.org/openicpsr/project/179761/version/V1/view},
+  abstract    = {Religious communities are important providers of social insurance. We show that risk associated with oil dependence facilitated the proliferation of religious communities throughout the U.S. South during the twentieth century. Known oil abundance predicts higher rates of church membership, which are not driven by selective migration or local economic development. Consistent with a social insurance channel, greater oil price volatility increases effects, while greater access to credit, state-level social insurance, and private insurance crowd out effects. Religious communities limit spillovers of oil price shocks across sectors, reducing increases in unemployment following a negative shock by about 30 percent.}
+}
+
+@article{Bazzi_etal_2023,
+  author      = {Bazzi, Samuel and Ferrara, Andreas and Fiszbein, Martin and Pearson, Thomas and Testa, Patrick},
+  title       = {The Other Great Migration: Southern Whites and the New Right},
+  journal     = {Quarterly Journal of Economics},
+  volume      = {138},
+  number      = {3},
+  pages       = {1577--1647},
+  year        = {2023},
+  category    = {publication},
+  selected    = {true},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1BoqjguzIZK6RERbYW3Ya7REbbtMmpjAc/view?usp=sharing},
+  replication = {https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/KLIPEM},
+  abstract    = {This article shows how the migration of millions of Southern whites in the twentieth century shaped the cultural and political landscape across the United States. Racially and religiously conservative, Southern white migrants created new electoral possibilities for a broad-based coalition with economic conservatives. With their considerable geographic scope, these migrants hastened partisan realignment and helped catalyze and bolster a New Right movement with national influence over the long run. More than just augmenting the conservative voter base outside the South, they influenced non-Southerners by building evangelical churches, diffusing right-wing media, and mixing through intermarriage and residential integration. Tracking non-Southern households, we show that exposure to Southern white neighbors increased adoption of conservative religious norms. Overall, our findings suggest that this mass migration blurred the North–South cultural divide and reshaped the geography of conservatism in the United States.},
+  media       = {The Economist|https://www.economist.com/graphic-detail/2023/03/29/americas-other-great-migration; Washington Post|https://www.washingtonpost.com/opinions/2023/04/26/white-southern-great-migration/; VoxEU|https://cepr.org/multimedia/other-great-migration; NPR Morning Edition|https://www.npr.org/2023/05/29/1178699045/how-the-migration-of-southern-whites-in-the-20th-century-shaped-americas-landsca}
+}
+
+@article{Ferrara_2022,
+  author      = {Ferrara, Andreas},
+  title       = {World War II and Black Economic Progress},
+  journal     = {Journal of Labor Economics},
+  volume      = {40},
+  number      = {4},
+  pages       = {1053--1091},
+  year        = {2022},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1i7ilQ5Ep2LfcUc0-BZbCygz1Tuh7B6B9/view?usp=sharing},
+  replication = {https://www.journals.uchicago.edu/doi/suppl/10.1086/716921/suppl_file/20392data.zip},
+  abstract    = {During the 1940s, a substantial share of southern Black men moved from low-skilled to much better paying semiskilled jobs. Using newly digitized military data, I show that counties with higher World War II casualty rates among semiskilled White soldiers saw an increase in the share of semiskilled Black workers. These deaths opened new employment opportunities for Black southerners and, together with learning effects by employers, can explain 35% of the occupational upgrading at mid-century. I provide evidence that the casualty-induced labor shortages reduced racial barriers to entry, leading to a positive selection of Black workers into semiskilled employment.}
+}
+
+@article{Bazzi_etal_2022,
+  author      = {Bazzi, Samuel and Ferrara, Andreas and Fiszbein, Martin and Pearson, Thomas and Testa, Patrick},
+  title       = {Sundown Towns and Racial Exclusion: The Southern White Diaspora and the ``Great Retreat''},
+  journal     = {AEA Papers and Proceedings},
+  volume      = {112},
+  pages       = {234--238},
+  year        = {2022},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1bZ3rKdddLZybN2yNYIylBaVwrmog5qxG/view?usp=sharing},
+  replication = {https://www.openicpsr.org/openicpsr/project/164162/version/V1/view},
+  abstract    = {This paper studies the rise of sundown towns—places where Blacks and other minorities were excluded after dark—outside the South after 1890. We provide a new dataset on the timing of sundown town establishment using full count census records. Using a shift-share instrumental variables approach, we show that the presence of Southern Whites is causally related to the appearance of sundown towns, with lynchings and the establishment of KKK chapters as plausible mechanisms for racial exclusion.}
+}
+
+@article{Dippel_etal_2020,
+  author      = {Dippel, Christian and Ferrara, Andreas and Heblich, Stephan},
+  title       = {Causal Mediation Analysis in Instrumental Variables Regressions},
+  journal     = {Stata Journal},
+  volume      = {20},
+  number      = {3},
+  pages       = {613--626},
+  year        = {2020},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1FfY4l-s1jhj494OnvH_f5VNVS1ErzNJG/view?usp=sharing},
+  replication = {https://journals.sagepub.com/doi/suppl/10.1177/1536867X20953572/suppl_file/st0611.zip},
+  abstract    = {In this article, we describe the use of ivmediate, a new command to estimate causal mediation effects in instrumental-variables settings using the framework developed by Dippel et al. (2020, unpublished manuscript). ivmediate allows estimation of a treatment effect and the share of this effect that can be attributed to a mediator variable. While both treatment and mediator can be potentially endogenous, a single instrument suffices to identify both the causal treatment and the mediation effects.}
+}
+
+@article{Becker_Ferrara_2019,
+  author      = {Becker, Sascha O. and Ferrara, Andreas},
+  title       = {Consequences of Forced Migration: A Survey of Recent Findings},
+  journal     = {Labour Economics},
+  volume      = {59},
+  pages       = {1--16},
+  year        = {2019},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/15DiKA-xRJtzIkxfT6DURistNQFnbq1Aa/view?usp=sharing},
+  replication = {https://doi.org/10.3886/E108422V1},
+  abstract    = {Forced migration as a consequence of wars, civil conflicts, or natural disasters may have consequences different from those of voluntary migration. Recent work has highlighted the consequences of forced migration on receiving populations, on migrants themselves and on sending populations. We document findings from recent work, on education and other economic outcomes, but also on political outcomes. We summarize key lessons and point to gaps in the literature.}
+}
+
+@article{Ferrara_Lange_2014,
+  author      = {Ferrara, Andreas and Lange, Ian},
+  title       = {Voluntary Programs to Encourage Diffusion: The Case of the Combined Heat-and-Power Partnership},
+  journal     = {The Energy Journal},
+  volume      = {35},
+  number      = {1},
+  pages       = {161--173},
+  year        = {2014},
+  category    = {publication},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1ovWqicM7CxBg2I2NQHbeoaVOtY3cQMfu/view?usp=sharing},
+  abstract    = {In the last decade, voluntary environmental programs have increased considerably in number and scope. A novel use of these programs is to diffuse new technology in industry as means to improving their environmental outcomes. This paper tests whether the U.S. Environmental Protection Agency's Combined Heat-and-Power (CHP) Partnership has encouraged the diffusion of CHP systems. Using a nearest neighbor matching estimator with electricity plant data and conditional logit estimation for electricity and manufacturing plants in the U.S., we find evidence that the program has helped CHP systems spread, controlling for the selection of firms into the partnership. On average partner firms have a 3% higher probability of installing CHP.}
+}
+
+
+% ============================ BOOK CHAPTERS ============================
+
+@incollection{Ferrara_2025,
+  author      = {Ferrara, Andreas},
+  title       = {Wars and the Labor Market Outcomes of Minorities in the U.S.},
+  booktitle   = {The Routledge Economic History of War},
+  editor      = {Eloranta, Jari and Land, Jeremy and Kuorelahti, Elina and Fishback, Price},
+  chapter     = {21},
+  pages       = {383--404},
+  year        = {2025},
+  publisher   = {Routledge},
+  category    = {bookchapter},
+  bibtex_show = {true},
+  pdf         = {https://drive.google.com/file/d/1PSbCWjJ3Ge4gytKUMdCzcnvLtN9TAEGY/view?usp=sharing},
+  abstract    = {This chapter reviews key literature studying the effects of wars on minority and underrepresented groups in U.S. labor markets in the 20th century. These labor markets, characterized by historically pervasive barriers to entry into certain occupations and industries, promotions, and fair pay for underrepresented workers, experienced severe challenges during times of war. These challenges served to break down some of the barriers faced by underrepresented workers. Recent years have shown that sudden labor shortages, similar to those induced by large-scale wars, are not a feature of the past. Hence, a better understanding of such shortages and their effects on different groups continues to be important. The focus here is on the labor market outcomes of Black and white women, as well as Black men, during and after the two World Wars. Their labor inputs compensated for the lack of white male workers during the war years; however, only WWII generated significant and more prolonged socioeconomic progress for both groups. This chapter summarizes theoretical considerations that can explain why some war-induced labor market shocks are persistent while others are not, and the empirical literature related to the labor market experiences of women and Black workers during and after the World Wars.}
 }

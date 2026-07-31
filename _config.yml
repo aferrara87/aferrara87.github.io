@@ -3,23 +3,22 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+first_name: Andreas
+middle_name:
+last_name: Ferrara
+contact_note:
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Andreas Ferrara — Associate Professor of Economics at the University of Pittsburgh and
+  Research Associate at the NBER. Economic history, labor economics, and political economy.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: Andreas Ferrara, economics, economic history, labor economics, political economy, University of Pittsburgh, NBER
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: 📈 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://alshedivat.github.io # the base hostname & protocol for your site
-baseurl: /al-folio # the subpath of your site, e.g. /blog/. Leave blank for root
+url: https://aferrara87.github.io # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
@@ -85,7 +84,11 @@ al_folio:
 
 navbar_fixed: true
 footer_fixed: true
-search_enabled: true
+# Site search is off: this removes the magnifying-glass icon and the "ctrl k"
+# hint from the navbar, and stops al_search emitting its index and scripts.
+# The three settings below only apply when search_enabled is true, so they are
+# inert while it is false; they are kept so search can be switched back on.
+search_enabled: false
 socials_in_search: true
 posts_in_search: true
 bib_search: true
@@ -124,18 +127,12 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
-blog_description: a simple whitespace theme for academics
-permalink: /blog/:year/:title/
+# This site has no blog: the demo _posts were removed and there is no blog
+# page in the navbar. The keys are kept but blank so nothing renders a stale
+# demo title if a blog is ever added back.
+blog_name:
+blog_description:
 lsi: false # produce an index for related posts
-
-# Pagination
-pagination:
-  enabled: true
-
-related_blog_posts:
-  enabled: true
-  max_related: 5
 
 # Giscus comments (RECOMMENDED)
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out the information below.
@@ -153,25 +150,10 @@ giscus:
   emit_metadata: 0
   lang: en
 
-# Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
-# https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-
 # External sources.
-# If you have blog posts published on medium.com or other external sources,
-# you can display them in your blog by adding a link to the RSS feed.
-# Optional: Set default categories and tags for posts from each source.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
-    categories: [external-posts]
-    tags: [medium]
-  - name: Google Blog
-    posts:
-      - url: https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/
-        published_date: 2024-05-14
-    categories: [external-posts]
-    tags: [google]
+# Disabled: the demo Medium and Google Blog entries were removed, so builds no
+# longer make network requests. To re-enable, add an `external_sources:` key
+# listing each source's rss_url (see the al_ext_posts plugin docs).
 
 # -----------------------------------------------------------------------------
 # Newsletter
@@ -186,17 +168,9 @@ newsletter:
 # Collections
 # -----------------------------------------------------------------------------
 
-collections:
-  books:
-    output: true
-  news:
-    defaults:
-      layout: post
-    output: true
-  projects:
-    output: true
-  teachings:
-    output: true
+# No custom collections. The demo _books, _news, _projects and _teachings
+# directories were removed, so declaring them here would only generate empty
+# index pages.
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -323,26 +297,17 @@ terser:
 # Jekyll Archives
 # -----------------------------------------------------------------------------
 
-jekyll-archives:
-  posts:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
-    permalinks:
-      year: "/blog/:year/"
-      tags: "/blog/:type/:name/"
-      categories: "/blog/:type/:name/"
-  books:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
-
-display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
-display_categories: ["external-services"] # these categories will be displayed on the front page of your blog
+# Archives are disabled. With no _posts and no _books collection there is
+# nothing to archive; leaving this configured is what generated the empty
+# /blog/2022/ and /blog/2024/ pages.
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Ferrara]
+  first_name: [Andreas, A.]
 
   style: apa
   locale: en
@@ -362,8 +327,11 @@ scholar:
   details_link: Details
 
   query: "@*"
-  group_by: year
-  group_order: descending
+  # Entries render as a flat list under each section heading on /publications/.
+  # The year is already shown in every citation line (see _layouts/bib.liquid).
+  group_by: none
+  sort_by: year
+  order: descending
 
 # Display different badges withs stats for your publications
 # Customize badge behavior in _layouts/bib.liquid

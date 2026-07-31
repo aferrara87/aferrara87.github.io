@@ -1,0 +1,232 @@
+{%- comment -%}
+  Custom al-folio bibliography template — the "chip" layout.
+  This file overrides the one shipped by the al_folio_core gem.
+
+  Styling lives in _sass/_publications-custom.scss, compiled via
+  assets/css/pub-chips.scss and linked from _pages/publications.md.
+  Behaviour lives in assets/js/publications-toggle.js.
+
+  Fields each entry can set are documented at the top of _bibliography/papers.bib.
+
+  Citation line renders as:  Year. Venue. Note (with Coauthors).
+  The site owner is never listed — they are implied — so only coauthors show,
+  alphabetically by surname. Solo-authored entries get no "(with ...)" clause.
+
+  Visual grammar:
+    chevron  = expands inline (Abstract, Plain-language summary, BibTeX, Media)
+    arrow    = opens in a new tab (PDF, Video, Replication)
+    download = downloads a file (Teaching materials)
+  Accented ("pf") chips are the public-facing on-ramps: summary + video.
+{%- endcomment -%}
+
+{%- comment -%}
+  --- Reset per-entry state ---
+  jekyll-scholar reuses a single Liquid context for every entry rendered by one
+  bibliography tag, so any value set with `assign` leaks into the entries that
+  follow it. Because teach_url is only assigned inside a conditional, one paper
+  with a teaching field made the chip appear on every later paper in the same
+  section. Clear these first so each entry starts clean. Note Liquid treats ""
+  as truthy, so these must be nil, not empty strings.
+{%- endcomment -%}
+{%- assign pdf_url = nil -%}
+{%- assign teach_url = nil -%}
+{%- assign title_url = nil -%}
+
+{%- comment -%} --- Link targets: bare filenames resolve under /assets/pdf/ --- {%- endcomment -%}
+{%- if entry.pdf -%}
+  {%- if entry.pdf contains "://" -%}{%- assign pdf_url = entry.pdf -%}
+  {%- else -%}{%- assign pdf_url = entry.pdf | prepend: "/assets/pdf/" | relative_url -%}{%- endif -%}
+{%- endif -%}
+{%- if entry.teaching -%}
+  {%- if entry.teaching contains "://" -%}{%- assign teach_url = entry.teaching -%}
+  {%- else -%}{%- assign teach_url = entry.teaching | prepend: "/assets/pdf/" | relative_url -%}{%- endif -%}
+{%- endif -%}
+{%- comment -%}
+  --- Undo the dash filter on anything used as a link ---
+  jekyll-scholar runs the `latex` bibtex filter (scholar.bibtex_filters in
+  _config.yml), which rewrites "--" as an en dash and "---" as an em dash.
+  That is correct for page ranges but silently corrupts URLs: a Google Drive
+  file ID containing "--" rendered as %E2%80%93 and the link 404'd. Restore
+  the literal hyphens on every value that becomes a href.
+{%- endcomment -%}
+{%- if pdf_url -%}{%- assign pdf_url = pdf_url | replace: "—", "---" | replace: "–", "--" -%}{%- endif -%}
+{%- if teach_url -%}{%- assign teach_url = teach_url | replace: "—", "---" | replace: "–", "--" -%}{%- endif -%}
+{%- assign repl_url = entry.replication | replace: "—", "---" | replace: "–", "--" -%}
+{%- assign video_url = entry.video | replace: "—", "---" | replace: "–", "--" -%}
+
+{%- if entry.html -%}{%- assign title_url = entry.html | replace: "—", "---" | replace: "–", "--" -%}
+{%- elsif pdf_url -%}{%- assign title_url = pdf_url -%}{%- endif -%}
+
+{%- comment -%}
+  --- Coauthors ---
+  BibTeX gives "Last, First and Last, First". Drop the site owner, flip the rest
+  to "First Last", and sort alphabetically by surname. Each entry is stored as
+  "Surname::Display Name" so the plain string sort orders by surname.
+{%- endcomment -%}
+{%- assign author_parts = entry.author | split: " and " -%}
+{%- assign co_keyed = "" -%}
+{%- for a in author_parts -%}
+  {%- assign a_clean = a | strip -%}
+  {%- unless a_clean contains site.last_name -%}
+    {%- assign np = a_clean | split: ", " -%}
+    {%- if np.size > 1 -%}
+      {%- capture keyed %}{{ np[0] | strip }}::{{ np[1] | strip }} {{ np[0] | strip }}{% endcapture -%}
+    {%- else -%}
+      {%- capture keyed %}{{ a_clean }}::{{ a_clean }}{% endcapture -%}
+    {%- endif -%}
+    {%- assign co_keyed = co_keyed | append: keyed | append: ";;" -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign co_sorted = co_keyed | split: ";;" | sort -%}
+{%- capture coauthors -%}
+  {%- for c in co_sorted -%}
+    {%- assign cn = c | split: "::" | last -%}
+    {%- unless forloop.first %}{% if forloop.last %}{% if co_sorted.size > 2 %}, and {% else %} and {% endif %}{% else %}, {% endif %}{% endunless -%}
+    {{- cn -}}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign coauthors = coauthors | strip -%}
+
+{%- comment -%} --- Editors (book chapters) --- {%- endcomment -%}
+{%- assign editor_parts = entry.editor | split: " and " -%}
+{%- capture editors -%}
+  {%- for e in editor_parts -%}
+    {%- assign ep = e | strip | split: ", " -%}
+    {%- if ep.size > 1 -%}
+      {%- capture enm %}{{ ep[1] | strip }} {{ ep[0] | strip }}{% endcapture -%}
+    {%- else -%}
+      {%- capture enm %}{{ e | strip }}{% endcapture -%}
+    {%- endif -%}
+    {%- unless forloop.first %}{% if forloop.last %}{% if editor_parts.size > 2 %}, and {% else %} and {% endif %}{% else %}, {% endif %}{% endunless -%}
+    {{- enm -}}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign editors = editors | strip -%}
+
+{%- comment -%} --- Venue (no trailing period; segments are joined below) --- {%- endcomment -%}
+{%- capture venue -%}
+  {%- if entry.journal -%}
+    <em>{{ entry.journal }}</em>{% if entry.volume %}, {{ entry.volume }}{% if entry.number %}({{ entry.number }}){% endif %}{% endif %}{% if entry.pages %}, {{ entry.pages }}{% endif %}
+  {%- elsif entry.booktitle -%}
+    In <em>{{ entry.booktitle }}</em>{% if entry.editor %}, edited by {{ editors }}{% endif %}{% if entry.chapter %}, ch. {{ entry.chapter }}{% endif %}{% if entry.pages %}, pp. {{ entry.pages }}{% endif %}{% if entry.publisher %}, {{ entry.publisher }}{% endif %}
+  {%- elsif entry.number -%}
+    {{ entry.number }}
+  {%- elsif entry.institution -%}
+    {{ entry.institution }}
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign venue = venue | strip -%}
+
+{%- comment -%} --- Assemble "Year. Venue. Note" --- {%- endcomment -%}
+{%- assign segs = "" -%}
+{%- if entry.year %}{%- assign segs = segs | append: entry.year | append: ";;" -%}{% endif -%}
+{%- if venue != blank %}{%- assign segs = segs | append: venue | append: ";;" -%}{% endif -%}
+{%- if entry.note %}{%- assign segs = segs | append: entry.note | append: ";;" -%}{% endif -%}
+{%- assign seg_list = segs | split: ";;" -%}
+{%- assign ob = "{" -%}
+{%- assign cb = "}" -%}
+
+<div class="pub-item" id="{{ entry.key }}">
+  <div class="pub-cite">
+    {%- if title_url -%}
+      <a class="pub-title" href="{{ title_url }}" target="_blank" rel="noopener">{{ entry.title }}</a>
+    {%- else -%}
+      <span class="pub-title">{{ entry.title }}</span>
+    {%- endif -%}
+    <div class="pub-meta">{{ seg_list | join: ". " }}{% if coauthors != blank %} (with {{ coauthors }}){% endif %}.</div>
+  </div>
+
+  <div class="pub-chips">
+    {%- if entry.summary != blank -%}
+    <button type="button" class="pub-chip pf" data-target="sum-{{ entry.key }}" aria-controls="sum-{{ entry.key }}"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Plain-language summary <i class="fa-solid fa-chevron-down pub-chev" aria-hidden="true"></i></button>
+    {%- endif -%}
+    {%- if entry.abstract != blank -%}
+    <button type="button" class="pub-chip" data-target="abs-{{ entry.key }}" aria-controls="abs-{{ entry.key }}">Abstract <i class="fa-solid fa-chevron-down pub-chev" aria-hidden="true"></i></button>
+    {%- endif -%}
+    {%- if entry.pdf != blank -%}
+    <a class="pub-chip" href="{{ pdf_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> PDF <i class="fa-solid fa-arrow-up-right-from-square pub-ext" aria-hidden="true"></i></a>
+    {%- endif -%}
+    {%- if entry.bibtex_show -%}
+    <button type="button" class="pub-chip" data-target="bib-{{ entry.key }}" aria-controls="bib-{{ entry.key }}">BibTeX <i class="fa-solid fa-chevron-down pub-chev" aria-hidden="true"></i></button>
+    {%- endif -%}
+    {%- if entry.video != blank -%}
+    <a class="pub-chip pf" href="{{ video_url }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> Video <i class="fa-solid fa-arrow-up-right-from-square pub-ext" aria-hidden="true"></i></a>
+    {%- endif -%}
+    {%- if entry.replication != blank -%}
+    <a class="pub-chip" href="{{ repl_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-database" aria-hidden="true"></i> Replication <i class="fa-solid fa-arrow-up-right-from-square pub-ext" aria-hidden="true"></i></a>
+    {%- endif -%}
+    {%- if entry.teaching != blank -%}
+    <a class="pub-chip" href="{{ teach_url }}" download><i class="fa-solid fa-download" aria-hidden="true"></i> Teaching materials</a>
+    {%- endif -%}
+    {%- if entry.media != blank -%}
+    <button type="button" class="pub-chip" data-target="media-{{ entry.key }}" aria-controls="media-{{ entry.key }}"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Media <i class="fa-solid fa-chevron-down pub-chev" aria-hidden="true"></i></button>
+    {%- endif -%}
+  </div>
+
+  {%- if entry.summary != blank -%}
+  <div class="pub-panel" id="sum-{{ entry.key }}"><div class="pub-panelinner"><div class="pub-body">{{ entry.summary }}</div></div></div>
+  {%- endif -%}
+  {%- if entry.abstract != blank -%}
+  <div class="pub-panel" id="abs-{{ entry.key }}"><div class="pub-panelinner"><div class="pub-body">{{ entry.abstract }}</div></div></div>
+  {%- endif -%}
+  {%- if entry.bibtex_show -%}
+  <div class="pub-panel" id="bib-{{ entry.key }}"><div class="pub-panelinner"><div class="pub-body">
+    <div class="pub-bibhead"><span>BibTeX</span><button type="button" class="pub-copy" data-src="bibsrc-{{ entry.key }}"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copy</button></div>
+    {%- comment -%}
+      Hand-built BibTeX. The entry.bibtex variable dumps every field, including
+      the machinery ones (category, selected, bibtex_show, pdf, replication,
+      media, summary, abstract, teaching), which are site plumbing and not part
+      of a real citation. Only bibliographic fields are emitted, in conventional
+      order.
+
+      Two formatting constraints:
+        - The conditional tags below start at column 0. This is inside a pre
+          element, so indentation in the template would appear in the copied
+          BibTeX output.
+        - Braces are emitted via the ob/cb variables assigned above. Writing
+          a brace inside an output tag does not work: Liquid's tokenizer scans
+          for the first closing }} and cuts the token short. Assigning them in
+          a tag is safe, because tags terminate on %} instead.
+
+      NOTE: Liquid parses tags inside comment blocks, so do not write literal
+      tag syntax in here — a bare conditional tag with no expression is a
+      build-breaking syntax error.
+    {%- endcomment -%}
+    <pre class="pub-bibtex" id="bibsrc-{{ entry.key }}">@{{ entry.type }}{{ ob }}{{ entry.key }},
+{% if entry.author %}  author      = {{ ob }}{{ entry.author }}{{ cb }},
+{% endif %}{% if entry.title %}  title       = {{ ob }}{{ entry.title }}{{ cb }},
+{% endif %}{% if entry.journal %}  journal     = {{ ob }}{{ entry.journal }}{{ cb }},
+{% endif %}{% if entry.booktitle %}  booktitle   = {{ ob }}{{ entry.booktitle }}{{ cb }},
+{% endif %}{% if entry.editor %}  editor      = {{ ob }}{{ entry.editor }}{{ cb }},
+{% endif %}{% if entry.volume %}  volume      = {{ ob }}{{ entry.volume }}{{ cb }},
+{% endif %}{% if entry.number %}  number      = {{ ob }}{{ entry.number }}{{ cb }},
+{% endif %}{% if entry.pages %}  pages       = {{ ob }}{{ entry.pages }}{{ cb }},
+{% endif %}{% if entry.chapter %}  chapter     = {{ ob }}{{ entry.chapter }}{{ cb }},
+{% endif %}{% if entry.publisher %}  publisher   = {{ ob }}{{ entry.publisher }}{{ cb }},
+{% endif %}{% if entry.institution %}  institution = {{ ob }}{{ entry.institution }}{{ cb }},
+{% endif %}{% if entry.year %}  year        = {{ ob }}{{ entry.year }}{{ cb }},
+{% endif %}{% if entry.note %}  note        = {{ ob }}{{ entry.note }}{{ cb }},
+{% endif %}{{ cb }}</pre>
+  </div></div></div>
+  {%- endif -%}
+  {%- if entry.media != blank -%}
+  <div class="pub-panel" id="media-{{ entry.key }}"><div class="pub-panelinner"><div class="pub-body"><ul class="pub-medialist">
+    {%- comment -%} media = "Outlet | URL ; Outlet | URL" {%- endcomment -%}
+    {%- assign media_items = entry.media | split: ";" -%}
+    {%- for m in media_items -%}
+      {%- assign mp = m | split: "|" -%}
+      {%- assign m_label = mp[0] | strip -%}
+      {%- assign m_href = mp[1] | strip | replace: "—", "---" | replace: "–", "--" -%}
+      {%- if m_label != blank -%}
+        <li>
+          {%- if m_href != blank -%}
+            <a href="{{ m_href }}" target="_blank" rel="noopener">{{ m_label }}</a>
+          {%- else -%}
+            {{ m_label }}
+          {%- endif -%}
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul></div></div></div>
+  {%- endif -%}
+</div>
