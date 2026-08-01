@@ -1,0 +1,66 @@
+{% comment %}
+  Local override of al_folio_core's _includes/footer.liquid.
+
+  Two changes from the gem original:
+
+  1. The copyright/attribution text line is removed. The site.footer_text hook
+     is kept, so the _config.yml field still works if you ever want a line back.
+  2. The <footer> element is only emitted when it would actually have content.
+     Both of the gem's footer variants style the element unconditionally
+     (fixed-bottom paints a background, sticky-bottom draws a top border and
+     80px of padding), so an empty footer renders as a visible strip or rule
+     rather than as nothing. Skipping the element avoids that regardless of
+     which variant site.footer_fixed selects.
+
+  The layout, classes, and the impressum / last-updated / newsletter structure
+  are otherwise unchanged from the gem. Re-check this file against the gem
+  after upgrading al_folio_core.
+{% endcomment %}
+{% capture footer_contents %}
+  {{ site.footer_text }}
+  {% if site.impressum_path %}
+    <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
+  {% endif %}
+  {% if site.last_updated %}
+    Last updated: {{ 'now' | date: '%B %d, %Y' }}.
+  {% endif %}
+{% endcapture %}
+
+{% comment %}
+  The newsletter form lives outside footer_contents and only in the
+  sticky-bottom variant, so it keeps the footer alive on its own.
+{% endcomment %}
+{% assign footer_has_content = false %}
+{% assign footer_text_content = footer_contents | strip %}
+{% if footer_text_content != '' %}
+  {% assign footer_has_content = true %}
+{% endif %}
+{% unless site.footer_fixed %}
+  {% if site.newsletter.enabled %}
+    {% assign footer_has_content = true %}
+  {% endif %}
+{% endunless %}
+
+{% if footer_has_content %}
+  {% if site.footer_fixed %}
+    <footer class="fixed-bottom" role="contentinfo">
+      <div class="container mt-0">
+        {{ footer_contents }}
+      </div>
+    </footer>
+  {% else %}
+    <footer class="sticky-bottom mt-5" role="contentinfo">
+      {% if site.newsletter.enabled %}
+        {% if site.plugins contains 'al_newsletter' %}
+          {% include plugins/al_newsletter_form_center.liquid %}
+        {% else %}
+          {% include newsletter.liquid %}
+        {% endif %}
+      {% endif %}
+
+      <div class="container">
+        {{ footer_contents }}
+      </div>
+    </footer>
+  {% endif %}
+{% endif %}
