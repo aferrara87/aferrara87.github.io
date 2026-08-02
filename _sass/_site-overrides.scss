@@ -38,53 +38,67 @@
   font-family: inherit;
 }
 
-// ------------------------------------------------------- About page on mobile
-// al_folio_core sizes the About profile column with `.profile { width: 100% }`
-// and only narrows it to 30% inside `@media (min-width: 576px)`. So on phones
-// the portrait renders full-bleed and the `.more-info` contact block — same
-// font, same color, no spacing — butts straight into the bio.
+// ----------------------------------------- About page on phones/small tablets
+// al_folio_core lays the About page out as a floated 30% column
+// (`@media (min-width: 576px) { .profile { width: 30% } }`) with the portrait
+// at `width: 100%` of that column and `.more-info` in plain body styling —
+// same size, same color, no spacing — so it butts straight into the bio.
 //
-// This block is `max-width: 575.98px`, the exact complement of the theme's
-// `min-width: 576px`, so the two never overlap and the desktop layout (float,
-// 30% column, 270px image) is untouched.
-@media (max-width: 575.98px) {
+// Breakpoint is 991.98px (just under Bootstrap's `lg`), so it covers phones
+// and small tablets in portrait; >= 992px keeps the theme's desktop layout
+// verbatim. Between 576 and 991.98px this now *overrides* the theme's floated
+// 30% column and stacks the profile above the bio instead — that is what makes
+// a centered, capped portrait possible at those widths.
+//
+// `!important` throughout: these all go head-to-head with theme rules of equal
+// specificity (`.profile img`, `.profile .more-info p`), where the winner would
+// otherwise depend on stylesheet order.
+@media (max-width: 991.98px) {
   .profile {
-    // Full-width block already; the float offset would only skew the centering.
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1.5rem;
+    // Undo the theme's floated side column: full-width, stacked, centered.
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 1.75rem !important;
+    text-align: center;
 
-    // `.profile img` is `width: 100%` in the theme; `max-width` wins, giving a
-    // portrait at 65% of the column. `picture` is inline by default, so it has
-    // to become a block for the auto margins to actually center the image.
+    // `picture` is inline by default, so it has to become a block for the auto
+    // margins on the image to actually center it.
     figure,
     picture {
-      display: block;
-      margin: 0 auto;
+      display: block !important;
+      margin: 0 auto !important;
     }
 
+    // Beats the theme's `.profile img { width: 100% }`. The percentage keeps it
+    // proportional on a phone; the px cap stops it ballooning to ~640px on a
+    // tablet, so the portrait stays about the same physical size throughout.
     img {
-      display: block;
-      max-width: 65%;
-      margin: 0 auto;
+      display: block !important;
+      width: 65% !important;
+      max-width: 260px !important;
+      height: auto !important;
+      margin: 0 auto !important;
     }
 
     // Separate the contact block from both the photo above and the bio below,
-    // and drop it out of body-text styling: smaller, muted, and closed off by
-    // a divider rule so it no longer reads as the bio's opening line.
+    // and pull it out of body-text styling: smaller, muted, centered under the
+    // portrait, and closed off by a divider so it can no longer read as the
+    // bio's opening line.
     .more-info {
-      margin-top: 1.25rem;
-      margin-bottom: 0;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--global-divider-color);
-      font-size: 0.85rem;
-      line-height: 1.45;
-      color: var(--global-text-color-light);
+      display: block !important;
+      margin: 1.25rem auto 0 !important;
+      padding-bottom: 1.1rem !important;
+      border-bottom: 1px solid var(--global-divider-color) !important;
+      font-size: 0.85rem !important;
+      line-height: 1.5 !important;
+      color: var(--global-text-color-light) !important;
 
       // The theme leaves these `inline-block`, which at full width runs the
       // department, address and email together into one flowing paragraph.
       p {
-        display: block;
+        display: block !important;
+        margin: 0 0 0.15rem !important;
       }
     }
   }
