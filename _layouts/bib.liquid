@@ -122,6 +122,7 @@
 {%- if entry.year %}{%- assign segs = segs | append: entry.year | append: ";;" -%}{% endif -%}
 {%- if venue != blank %}{%- assign segs = segs | append: venue | append: ";;" -%}{% endif -%}
 {%- if entry.note %}{%- assign segs = segs | append: entry.note | append: ";;" -%}{% endif -%}
+{%- if entry.status %}{%- assign segs = segs | append: entry.status | append: ";;" -%}{% endif -%}
 {%- assign seg_list = segs | split: ";;" -%}
 {%- assign ob = "{" -%}
 {%- assign cb = "}" -%}
