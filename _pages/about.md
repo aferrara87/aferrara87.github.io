@@ -22,6 +22,8 @@ I am an Associate Professor in the [Department of Economics](https://www.econ.pi
 
 I received my Ph.D. in Economics from the [University of Warwick](https://warwick.ac.uk/fac/soc/economics/), where I am affiliated with the Centre for Competitive Advantage in the Global Economy ([CAGE](https://warwick.ac.uk/fac/soc/economics/research/centres/cage/)). I am also a research fellow at the ROCKWOOL Foundation Berlin ([RFBerlin](https://www.rfberlin.com/)) and a faculty affiliate at the Center for Governance and Markets ([CGM](https://www.cgm.pitt.edu/)).
 
+Currently, I serve as an editorial board member for Explorations in Economic History and the Journal of Economic History.
+
 My research interests are in economic history, labor economics, and political economy. You can find my [CV]({{ '/cv/' | relative_url }}) here, and my [research]({{ '/publications/' | relative_url }}) here.
 
 [Google Scholar profile](https://scholar.google.com/citations?user=n9usP5QAAAAJ)<br>
